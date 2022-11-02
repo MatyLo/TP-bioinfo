@@ -153,6 +153,16 @@ def get_sink_nodes(graph):
     pass
 
 def get_contigs(graph, starting_nodes, ending_nodes):
+    tuple=[]
+    for noeud_start in starting_nodes:
+        for noeud_end in ending_nodes:
+            if(nx.has_path(graph,noeud_start,noeud_end)==True):
+                contig = noeud_start
+                for path in nx.all_simple_paths(graph,noeud_start,noeud_end):
+                    for node in path[1:]:
+                        contig+=node[-1]
+                tuple.append([contig, len(contig)])
+    return tuple
     pass
 
 def save_contigs(contigs_list, output_file):
