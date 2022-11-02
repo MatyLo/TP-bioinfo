@@ -71,7 +71,13 @@ def get_arguments():
 
 
 def read_fastq(fastq_file):
-    pass
+	#print("aaa")
+	#with open (fastq_file,rt) as monfich:
+		for i in monfich:
+			yield next(monfich).strip()
+			next(monfich)
+			next()
+		pass
 
 
 def cut_kmer(read, kmer_size):
@@ -152,6 +158,8 @@ def main():
     """
     # Get arguments
     args = get_arguments()
+    
+    read_fastq(args.dest)
 
     # Fonctions de dessin du graphe
     # A decommenter si vous souhaitez visualiser un petit 
