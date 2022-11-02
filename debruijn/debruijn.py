@@ -72,23 +72,43 @@ def get_arguments():
 
 def read_fastq(fastq_file):
 	#print("aaa")
-	#with open (fastq_file,rt) as monfich:
+	with open (fastq_file,"r") as monfich:
 		for i in monfich:
-			yield next(monfich).strip()
+			yield next(monfich).strip("\n")
 			next(monfich)
-			next()
+			next(monfich)
 		pass
 
 
 def cut_kmer(read, kmer_size):
+    for i,_ in enumerate(read[:len(read)-kmer_size+1]):
+            yield read[i:i+kmer_size]
     pass
 
 
 def build_kmer_dict(fastq_file, kmer_size):
+    #On crée le dictionnaire vide
+    dict_kmer = {}
+
+    #On récupère la séquence grace a read_fastq
+    for read in read_fastq(fastq_file):
+        for k_mer in cut_kmer(read, kmer_size):
+            #Si le k_mer se trouve déjà dans la table de hachage, on ajoute 1 au compteur
+            if k_mer in dict_kmer:
+                dict_kmer[k_mer] += 1
+            #Sinon, on ajoute une nouvelle clé à la table avec la valeur 1
+            else:
+                dict_kmer[k_mer] = 1
+
+    return dict_kmer
     pass
 
 
 def build_graph(kmer_dict):
+    digraph = nx.DiGraph()
+    for kmer, occurrence in kmer_dict.items():
+        digraph.add_edge(kmer[:-1],kmer[1:],weight=occurrence)
+    return digraph
     pass
 
 
@@ -117,9 +137,19 @@ def solve_out_tips(graph, ending_nodes):
     pass
 
 def get_starting_nodes(graph):
+    list_start = []
+    for node in graph:
+        if(len(list(graph.predecessors(node)))==0):
+            list_start.append(node)
+    return list_start
     pass
 
 def get_sink_nodes(graph):
+    list_sink = []
+    for node in graph:
+        if(len(list(graph.successors(node)))==0):
+            list_sink.append(node)
+    return list_sink
     pass
 
 def get_contigs(graph, starting_nodes, ending_nodes):
