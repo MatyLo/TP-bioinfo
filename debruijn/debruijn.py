@@ -27,13 +27,13 @@ import textwrap
 import matplotlib.pyplot as plt
 matplotlib.use("Agg")
 
-__author__ = "Your Name"
+__author__ = "Maty LO"
 __copyright__ = "Universite Paris Diderot"
-__credits__ = ["Your Name"]
+__credits__ = ["Maty LO"]
 __license__ = "GPL"
 __version__ = "1.0.0"
-__maintainer__ = "Your Name"
-__email__ = "your@email.fr"
+__maintainer__ = "Maty LO"
+__email__ = "maty.lo@etu.u-paris.fr"
 __status__ = "Developpement"
 
 def isfile(path):
@@ -241,6 +241,23 @@ def simplify_bubbles(graph):
     pass
 
 def solve_entry_tips(graph, starting_nodes):
+    #pointe = False
+    #for n in graph:
+     #   liste_predecesseurs = list(graph.predecessors(n))
+      #  for i in range(len(liste_predecesseurs)-1):
+       #     if(liste_predecesseurs[i] in starting_nodes):
+        #        liste_predecesseurs2 = list(graph.predecessors(liste_predecesseurs[i]))
+         #       for j in range(len(liste_predecesseurs2)-1):
+          #          if(liste_predecesseurs2[j] in starting_nodes):
+           #             pointe = True
+            #            break
+            #if(bubble == True):
+             #break
+        #if(bubble == True):
+         #   break
+    #if(bubble):
+     #   graph = solve_entry_tips(graph,)
+    #return graph
     pass
 
 def solve_out_tips(graph, ending_nodes):
@@ -314,7 +331,14 @@ def main():
     # Get arguments
     args = get_arguments()
     
-    #read_fastq(args.dest)
+    #Lecture du fichier et construction du graphe
+    read_fastq("/Users/matylo/Documents/TP-bioinfo/data/eva71.fna")
+
+    #Resolution des bulles
+
+    #Resolutions des pointes
+
+    #Ecriture du/des contigs
 
     # Fonctions de dessin du graphe
     # A decommenter si vous souhaitez visualiser un petit 
