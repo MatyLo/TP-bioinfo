@@ -92,6 +92,7 @@ def test_solve_bubble():
                                      (2, 8, 3), (8, 9, 3), (9, 5, 3),
                                      (5, 6, 10), (5, 7, 10)])
     graph_1 = solve_bubble(graph_1, 2, 5)
+
     assert (2,8) not in graph_1.edges()
     assert (8,9) not in graph_1.edges()
     assert (9,5) not in graph_1.edges()
